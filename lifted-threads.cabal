@@ -9,8 +9,9 @@ homepage:            https://github.com/scrive/lifted-threads
 
 license:             BSD3
 license-file:        LICENSE
-author:              Scrive
+author:              Scrive AB
 maintainer:          Andrzej Rybczak <andrzej@rybczak.net>, Jonathan Jouty <jonathan@scrive.com>
+copyright:           Scrive AB
 category:            Concurrency
 build-type:          Simple
 cabal-version:       >= 1.10

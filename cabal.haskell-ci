@@ -1,0 +1,5 @@
+-- Build without tests and benchmarks
+no-tests-no-benchmarks: True
+
+-- Enable builds only for specific branches
+branches: master

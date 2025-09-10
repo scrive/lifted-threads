@@ -11,4 +11,4 @@ fixTypes :: MonadBaseControl IO m
          => (ThreadId, IO (Result (StM m a)))
          -> IO (ThreadId, m (Result a))
 {-# INLINE fixTypes #-}
-fixTypes = pure . fmap (\c -> liftBase c >>= traverse restoreM)
+fixTypes (tid, wait) = pure (tid, liftBase wait >>= traverse restoreM)

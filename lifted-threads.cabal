@@ -31,6 +31,7 @@ library
     Control.Concurrent.Thread.Group.Lifted
     Control.Concurrent.Thread.Lifted
 
+  other-modules:    Control.Concurrent.Thread.Lifted.Internal
   build-depends:
     , base               >=4.14 && <5
     , monad-control      >=0.3  && <1.1

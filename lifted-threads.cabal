@@ -1,6 +1,6 @@
 cabal-version:      3.0
 name:               lifted-threads
-version:            1.0.1
+version:            1.0
 synopsis:           lifted IO operations from the threads library
 description:
   @lifted-threads@ exports IO operations from the threads

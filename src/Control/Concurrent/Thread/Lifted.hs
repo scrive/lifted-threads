@@ -9,6 +9,7 @@ module Control.Concurrent.Thread.Lifted (
   , forkOn
   , forkWithUnmask
   , forkOnWithUnmask
+
   -- * Results
   , Result
   , result
@@ -16,6 +17,7 @@ module Control.Concurrent.Thread.Lifted (
 
 import Control.Concurrent (ThreadId)
 import Control.Concurrent.Thread (Result)
+import Control.Concurrent.Thread.Lifted.Internal
 import Control.Monad.Base
 import Control.Monad.Trans.Control
 import qualified Control.Concurrent.Thread as T
@@ -60,15 +62,3 @@ forkOnWithUnmask i action = liftBaseWith $ \runInBase -> fixTypes
 -- Generalized version of 'T.result'.
 result :: MonadBase IO m => Result a -> m a
 result = liftBase . T.result
-
-----------------------------------------
-
-fixTypes :: MonadBaseControl IO m
-         => (ThreadId, IO (Result (StM m a)))
-         -> IO (ThreadId, m (Result a))
-fixTypes = return . fmap (\c -> liftBase c >>= mapMEither restoreM)
-  where
-    -- missing instance of Traversable for Either
-    mapMEither :: Monad m => (a -> m b) -> Either c a -> m (Either c b)
-    mapMEither f (Right r) = f r >>= \v -> return (Right v)
-    mapMEither _ (Left v) = return (Left v)
